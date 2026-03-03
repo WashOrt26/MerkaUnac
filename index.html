@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Marketplace</title>
+  <link rel="stylesheet" href="Styles/navbar.css">
   <link rel="stylesheet" href="Styles/Estilos.css">
 </head>
 <body>
 
   <!-- Header -->
   <header class="top-bar">
-    <div class="logo">Marketplace</div>
+    <button class="logo" onclick="window.location.href='index.html'">Marketplace</button>
     <input type="text" placeholder="Buscar productos..." />
+    <button class="auth-button" onclick="window.location.href='login.html'">
+      Iniciar sesión / Registrarse
+    </button>
   </header>
 
   <!-- Categorías -->
@@ -20,32 +24,33 @@
     <button>🏠 Hogar</button>
     <button>👕 Ropa</button>
     <button>🎮 Juegos</button>
-    <button style="position: relative; right: 0;">Cuenta</button>
   </section>
 
   <!-- Productos -->
-  <main class="products">
-    <div class="card">
+  <main class="products" >
+    <button class="card">
       <img src="https://inquietudesdeunaperiodista.wordpress.com/wp-content/uploads/2013/04/283030445132.jpg" alt="">
       <h3>$120.000</h3>
       <p>Celular Samsung</p>
       <span>Cartagena</span>
-    </div>
+    </button>
 
-    <div class="card">
+    <button class="card">
       <img src="https://www.shutterstock.com/image-photo/old-bicycle-frame-broken-half-600nw-2224933569.jpg" alt="">
       <h3>$900.000</h3>
       <p>Bicicleta GW</p>
       <span>Barranquilla</span>
-    </div>
+    </button>
 
-    <div class="card">
+    <button class="card" onclick="window.location.href='producto.html'">
       <img src="https://thumbs.dreamstime.com/b/los-zapatos-viejos-se-fueron-en-el-piso-de-agrietarse-de-griter%C3%ADo-de-la-casa-80716819.jpg" alt="">
       <h3>$60.000</h3>
       <p>Zapatos Usados</p>
       <span>Medellín</span>
-    </div>
+    </button>
   </main>
+
+  
 
 
 </body>

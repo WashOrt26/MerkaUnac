@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="Styles/navbar.css">
     <link rel="stylesheet" href="Styles/estilologin.css">
-
 </head>
 <body>
+    <header class="top-bar">
+        <button class="logo" onclick="window.location.href='index.html'">Marketplace</button>
+        <input type="text" placeholder="Buscar productos..." />
+        <button class="auth-button" onclick="window.location.href='login.html'">
+          Iniciar sesión / Registrarse
+        </button>
+      </header>
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
 
@@ -19,6 +26,20 @@
         </form>
 
         <p class="extra">¿Olvidaste tu contraseña?</p>
+
+
+        <hr style="margin: 25px 0; border: none; border-top: 1px solid rgba(255,255,255,0.4);" />
+
+        <h2 id="registro">Registrarse</h2>
+        <form>
+            <input type="text" placeholder="Nombre completo" required>
+            <input type="email" placeholder="Correo electrónico" required>
+            <input type="text" placeholder="Usuario" required>
+            <input type="password" placeholder="Contraseña" required>
+            <input type="password" placeholder="Confirmar contraseña" required>
+
+            <button type="submit">Crear cuenta</button>
+        </form>
     </div>
 
 </body>

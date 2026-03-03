@@ -1,0 +1,48 @@
+
+
+.top-bar {
+  background: linear-gradient(90deg, #00747f 0%, #2f98a3 50%, #5dbcc7 100%);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.logo {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.top-bar input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  background-color: #ffffff;
+}
+
+.auth-button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background-color: #00747f;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.auth-button:hover {
+  background-color: #178691;
+  transform: translateY(-1px);
+}
+
+
