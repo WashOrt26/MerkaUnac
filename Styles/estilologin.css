@@ -78,3 +78,10 @@ body {
 .login-container .extra a:hover {
     text-decoration: none;
 }
+
+/* SEPARADOR */
+.separator {
+    margin: 25px 0;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+}

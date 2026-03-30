@@ -1,12 +1,18 @@
 
 
 .top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   background: linear-gradient(90deg, #00747f 0%, #2f98a3 50%, #5dbcc7 100%);
   padding: 12px 20px;
   display: flex;
   align-items: center;
   gap: 20px;
   justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .logo {

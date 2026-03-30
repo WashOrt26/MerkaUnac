@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-		<title>Pagina Producto</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Detalle del Producto</title>
 		<link rel="stylesheet" href="Styles/navbar.css" />
 		<link rel="stylesheet" href="Styles/product.css" />
 	</head>
@@ -15,76 +11,45 @@
 		<header class="top-bar">
 			<button class="logo" onclick="window.location.href='index.html'">Marketplace</button>
 			<input type="text" placeholder="Buscar productos..." />
-			<button class="auth-button" onclick="window.location.href='login.html'">
-			  Iniciar sesión / Registrarse
-			</button>
-		  </header>
-		<div class="container-title">Zapatos</div>
+			<div style="display: flex; gap: 10px;">
+				<button class="auth-button" onclick="window.location.href='agregar-producto.html'" style="background-color: #28a745;">
+					➕ Agregar Producto
+				</button>
+				<button class="auth-button" onclick="window.location.href='login.html'">
+					Iniciar sesión / Registrarse
+				</button>
+			</div>
+		</header>
+		<div class="container-title"></div>
 		<main>
 			<div class="container-img">
 				<img
-					src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+					src=""
 					alt="imagen-producto"
 				/>
 			</div>
 			<div class="container-info-product">
 				<div class="container-price">
-					<span>$95.00</span>
+					<span>$</span>
 				</div>
 
 				<div class="container-description">
 					<div class="title-description">
 						<h3>Descripción</h3>
-						<i class="fa-solid fa-chevron-down"></i>
 					</div>
 					<div class="text-description">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio mollitia officiis ea fugiat a itaque. Beatae illo sunt ad esse laboriosam magni unde ipsa odio laudantium, quod accusantium, quaerat molestias?
-						</p>
+						<p></p>
 					</div>
 				</div>
 
-				<div class="container-additional-information">
-					<div class="title-additional-information">
-						<h3>Vendedor</h3>
-						<i class="fa-solid fa-chevron-down"></i>
-					</div>
-					<div class="text-additional-information hidden">
-                        <p><strong>Nombre</strong>Pepito Perez</p>
-						<p><strong>WhatApp: </strong>+57.....</p>
-					</div>
-				</div>
 
-				<div class="container-reviews">
-					<div class="title-reviews">
-						<h3>Calificaciones (0)</h3>
-						<div class="rating">
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                        </div>
-					</div>
-				</div>
-
-				<div class="container-social">
-					<h3>Compartir</h3>
-					<div class="container-buttons-social">
-						<a href="#"><i class="fa-brands fa-facebook"></i></a>
-						<a href="#"><i class="fa-brands fa-instagram"></i></a>
-					</div>
-				</div>
+				<button class="btn-volver" onclick="window.history.back()">
+					← Volver
+				</button>
 			</div>
 		</main>
-		<footer>
-			<p>Derechos Reservados</p>
-		</footer>
 
-		<script
-			src="https://kit.fontawesome.com/81581fb069.js"
-			crossorigin="anonymous"
-		></script>
-		
+		<script src="./productos.js"></script>
+		<script src="./js/producto.js"></script>
 	</body>
 </html>

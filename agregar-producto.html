@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto</title>
+    <link rel="stylesheet" href="Styles/navbar.css">
+    <link rel="stylesheet" href="Styles/agregar-producto.css">
+</head>
+<body>
+   
+    <header class="top-bar">
+        <button class="logo" onclick="window.location.href='index.html'">Marketplace</button>
+        <button class="auth-button" onclick="window.location.href='index.html'">
+            ← Volver a inicio
+        </button>
+    </header>
+
+    <!-- Formulario para agregar producto -->
+    <div class="container-form">
+        <h1>Agregar Nuevo Producto</h1>
+        
+        <form id="formulario-producto">
+            <div class="form-group">
+                <label for="nombre">Nombre del Producto *</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ej: Celular Samsung">
+            </div>
+            
+            <div class="form-group">
+                <label for="precio">Precio *</label>
+                <input type="number" id="precio" name="precio" required placeholder="Ej: 120000" min="0">
+            </div>
+            
+            <div class="form-group">
+                <label for="descripcion">Descripción *</label>
+                <textarea id="descripcion" name="descripcion" required placeholder="Describe el producto..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="imagen">URL de la Imagen *</label>
+                <input type="url" id="imagen" name="imagen" required placeholder="Ej: https://...">
+            </div>
+            
+            <div class="form-group">
+                <label for="categoria">Categoría *</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="">-- Selecciona una categoría --</option>
+                    <option value="Electrónica">📱 Electrónica</option>
+                    <option value="Vehículos">🚗 Vehículos</option>
+                    <option value="Hogar">🏠 Hogar</option>
+                    <option value="Ropa">👕 Ropa</option>
+                    <option value="Juegos">🎮 Juegos</option>
+                </select>
+            </div>
+            
+            <div class="btn-group">
+                <button type="submit" class="btn btn-submit">Agregar Producto</button>
+                <button type="reset" class="btn btn-cancel">Limpiar Formulario</button>
+            </div>
+        </form>
+        
+    <div id="mensaje" class="mensaje"></div>
+    </div>
+
+    <!-- Lista de productos agregados -->
+    <div class="container-form lista-productos">
+        <h2>Productos Agregados (localStorage)</h2>
+        <div id="lista"></div>
+    </div>
+
+    <script src="./productos.js"></script>
+    <script src="./js/agregar-producto.js"></script>
+</body>
+</html>
