@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #F0F7FF;
     padding: 20px;
     padding-top: 80px;
 }
@@ -11,12 +11,12 @@ body {
     background: white;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.06);
 }
 
 .container-form h1 {
     text-align: center;
-    color: #333;
+    color: #1E3A5F;
     margin-bottom: 30px;
 }
 
@@ -27,7 +27,7 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #333;
+    color: #1E3A5F;
     font-weight: bold;
 }
 
@@ -36,7 +36,7 @@ body {
 .form-group select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #BFDBFE;
     border-radius: 4px;
     font-size: 14px;
     box-sizing: border-box;
@@ -51,8 +51,8 @@ body {
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+    border-color: #2563EB;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
 }
 
 .btn-group {
@@ -73,21 +73,21 @@ body {
 }
 
 .btn-submit {
-    background-color: #28a745;
-    color: white;
+    background-color: #93C5FD;
+    color: #1E3A5F;
 }
 
 .btn-submit:hover {
-    background-color: #218838;
+    background-color: #60A5FA;
 }
 
 .btn-cancel {
-    background-color: #6c757d;
-    color: white;
+    background-color: #DBEAFE;
+    color: #4B7FA3;
 }
 
 .btn-cancel:hover {
-    background-color: #5a6268;
+    background-color: #BFDBFE;
 }
 
 .mensaje {
@@ -99,15 +99,15 @@ body {
 }
 
 .mensaje.exito {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: #DBEAFE;
+    color: #1E3A5F;
+    border: 1px solid #BFDBFE;
 }
 
 .mensaje.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background-color: #FEE2E2;
+    color: #7F1D1D;
+    border: 1px solid #FECACA;
 }
 
 .lista-productos {
@@ -115,13 +115,13 @@ body {
 }
 
 .lista-productos h2 {
-    color: #333;
-    border-bottom: 2px solid #007bff;
+    color: #1E3A5F;
+    border-bottom: 2px solid #93C5FD;
     padding-bottom: 10px;
 }
 
 .producto-item {
-    background: #f9f9f9;
+    background: #F0F7FF;
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 4px;
@@ -136,18 +136,18 @@ body {
 
 .producto-info h4 {
     margin: 0;
-    color: #333;
+    color: #1E3A5F;
 }
 
 .producto-info p {
     margin: 5px 0;
-    color: #666;
+    color: #4B7FA3;
     font-size: 14px;
 }
 
 .btn-eliminar {
-    background-color: #dc3545;
-    color: white;
+    background-color: #BFDBFE;
+    color: #1E3A5F;
     border: none;
     padding: 8px 15px;
     border-radius: 4px;
@@ -156,5 +156,5 @@ body {
 }
 
 .btn-eliminar:hover {
-    background-color: #c82333;
+    background-color: #93C5FD;
 }
