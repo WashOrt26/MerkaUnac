@@ -216,3 +216,39 @@ footer{
 		gap:40px;
 	}
 }
+
+.btn-volver {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px 0;
+    background: #93C5FD;
+    color: #1E3A5F;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-volver:hover {
+    background-color: #60A5FA;
+}
+
+.btn-comprar {
+    width: 100%; 
+    padding: 12px 0; 
+    margin-top: 10px;
+    background-color: #8DE09F;
+    color: #0E4B28;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-comprar:hover {
+    background-color: #78C989;
+}
