@@ -14,12 +14,11 @@ La plataforma permite centralizar la información, mejorar la visibilidad de pro
 
 ## Funcionalidades actuales
 
-- Visualización de catálogo de productos
-- Búsqueda por nombre y filtrado por categorías
-- Vista detallada de productos
-- Sistema de autenticación (login / registro)
-- Validación de sesión para procesos de compra
-- Publicación de productos
+-La aplicación permite guardar y visualizar un catálogo de productos.
+-Incluye un sistema de filtrado por categoría y palabras clave para facilitar la búsqueda.
+-Cada producto cuenta con una vista detallada, donde se muestra su información y una imagen.
+-Al intentar realizar una compra, el sistema verifica si el usuario ha iniciado sesión; en caso contrario, lo redirige a las páginas de inicio de sesión o registro.
+-Los usuarios pueden publicar productos mediante la opción “añadir productos”, utilizando almacenamiento local (LocalStorage).
 
 ---
 
@@ -32,7 +31,7 @@ La plataforma permite centralizar la información, mejorar la visibilidad de pro
 
 ---
 
-## ▶️ Ejecución
+## Ejecución
 
 1. Clonar el repositorio:
 ```bash
