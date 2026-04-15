@@ -36,4 +36,4 @@ La plataforma permite centralizar la información, mejorar la visibilidad de pro
 
 1. Clonar el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/merkaunac.git
+https://github.com/WashOrt26/MerkaUnac.git
