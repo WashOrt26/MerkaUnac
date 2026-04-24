@@ -1,3 +1,4 @@
+/* Estilos de la vista de detalle del producto. */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 
 :root{
@@ -16,7 +17,7 @@
 	box-sizing:border-box;
 }
 
-body{
+.product-page{
 	font-family:'Ubuntu',sans-serif;
 	padding-top: 60px;
 	background:#F0F7FF;
@@ -52,7 +53,7 @@ header{
 }
 
 /* MAIN */
-main{
+.product-page main{
 	max-width:1100px;
 	margin:0 auto;
 	display:grid;

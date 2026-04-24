@@ -1,4 +1,5 @@
-body {
+/* Estilos de la pantalla para crear y administrar productos locales. */
+.add-product-page {
     font-family: Arial, sans-serif;
     background-color: #F0F7FF;
     padding: 20px;

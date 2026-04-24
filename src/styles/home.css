@@ -1,9 +1,10 @@
+/* Estilos de Home: filtros por categoría y grilla de productos. */
 * {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
 
-body {
+.home-page {
   margin: 0;
   background: #e6f9fb;
   padding-top: 60px;
@@ -98,4 +99,21 @@ body {
   display: block;
   font-size: 12px;
   color: #93C5FD;
+}
+
+.home-api-error {
+  margin: 0 24px 12px;
+  padding: 12px 16px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+.home-api-error code {
+  font-size: 13px;
+  background: #fee2e2;
+  padding: 2px 6px;
+  border-radius: 4px;
 }

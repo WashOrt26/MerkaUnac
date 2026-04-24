@@ -1,3 +1,4 @@
+/* Estilos del módulo visual de login/registro con diseño responsive. */
 *{
     margin: 0;
     padding: 0;
@@ -6,8 +7,8 @@
     font-family: 'Roboto', sans-serif;
 }
 
-body{
-    background-image: url(../imagenes/bolivar.jpg);
+.auth-page{
+    background-image: url('..\assets\imagenes\bolivar.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
