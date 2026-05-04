@@ -4,8 +4,8 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
-  // `server/` usa Node + mongoose; el preset del front no aplica ahí.
-  { ignores: ['dist', 'server'] },
+  // Solo lint del frontend React.
+  { ignores: ['dist'] },
   {
     files: ['src/**/*.{js,jsx}'],
     languageOptions: {

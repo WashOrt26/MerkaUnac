@@ -46,12 +46,13 @@ npm install
 
 # 3️ Configurar variables de entorno
 
-Crear un archivo .env en la carpeta del backend:
+Crear un archivo `backend/.env` en la carpeta del backend:
 
-MONGO_URI=tu_cadena_de_conexion_mongodb
-PORT=3000
+MONGODB_URI=tu_cadena_de_conexion_mongodb
+MONGODB_DB_NAME=MerkaUnac
+PORT=4000
 
-Puedes guiarte del archivo .env.example.
+Puedes guiarte del archivo `backend/.env.example`.
 
 # 4️ Ejecutar el proyecto
 Opción recomendada (todo junto)

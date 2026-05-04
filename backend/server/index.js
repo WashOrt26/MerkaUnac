@@ -25,7 +25,7 @@ const MONGODB_DB_NAME = process.env.MONGODB_DB_NAME?.trim() || 'MerkaUnac';
 
 if (!MONGODB_URI) {
   console.error('No se encontró MONGODB_URI.');
-  console.error(`1) Crea el archivo .env en la raíz del proyecto (ruta esperada: ${envPath}).`);
+  console.error(`1) Crea el archivo .env en la carpeta backend (ruta esperada: ${envPath}).`);
   console.error('2) Añade: MONGODB_URI=mongodb+srv://usuario:clave@cluster/... (sin comillas).');
   process.exit(1);
 }
