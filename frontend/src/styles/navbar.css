@@ -85,3 +85,60 @@ body {
   background: #6EE7B7 !important;
   border-color: #6EE7B7 !important;
 }
+
+/* Botón de wishlist */
+.auth-button[style*="#e83e8c"] {
+  background: #FCE7F3 !important;
+  border-color: #FBCFE8 !important;
+  color: #831843 !important;
+  font-weight: 700 !important;
+}
+
+.auth-button[style*="#e83e8c"]:hover {
+  background: #F9A8D4 !important;
+  border-color: #F9A8D4 !important;
+}
+
+/* Info de usuario autenticado */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1E3A5F;
+}
+
+.logout-btn {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid #93C5FD;
+  background: #ffffff;
+  color: #1E3A5F;
+  transition: all 0.15s;
+}
+
+.logout-btn:hover {
+  background: #FEE2E2;
+  border-color: #FCA5A5;
+  color: #991B1B;
+}
+
+/* Mensaje de error en auth */
+.auth-error {
+  color: #DC2626;
+  font-size: 13px;
+  text-align: center;
+  margin: 8px 0;
+  padding: 8px;
+  background: #FEE2E2;
+  border-radius: 6px;
+  border: 1px solid #FCA5A5;
+}

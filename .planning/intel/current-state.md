@@ -1,11 +1,20 @@
 # Intel — Estado Actual del Código
 
-**Fecha del análisis:** 2026-05-05
+**Fecha del análisis:** 2026-05-31
 **Analizado por:** Claude Code
+**Versión:** PMV Completo
+
+---
 
 ## Resumen ejecutivo
 
-El proyecto MerkaUnac tiene un frontend React + Vite funcional y un backend Express + MongoDB con CRUD completo de productos. La funcionalidad de autenticación está **maquetada pero no implementada**.
+El proyecto MerkaUnac tiene el PMV completamente implementado:
+- Frontend React + Vite funcional
+- Backend Express + MongoDB con autenticación JWT
+- Sistema de autenticación con validación de correo institucional
+- Wishlist funcional con persistencia en MongoDB
+- Slider de imágenes con soporte táctil
+- Rutas protegidas para usuarios autenticados
 
 ---
 
@@ -14,25 +23,30 @@ El proyecto MerkaUnac tiene un frontend React + Vite funcional y un backend Expr
 ### Estructura de archivos
 ```
 frontend/src/
-├── App.jsx                    # Routing (5 rutas)
-├── main.jsx                   # Entry point
+├── App.jsx                      # Routing con ProtectedRoute
+├── main.jsx                     # Entry point con AuthProvider
+├── contexts/
+│   └── AuthContext.jsx          # ✅ Estado global de autenticación
 ├── pages/
-│   ├── HomePage.jsx           # ✅ Catálogo con filtros
-│   ├── ProductDetailPage.jsx  # ⚠️ Vista básica, falta slider
-│   ├── AddProductPage.jsx     # ✅ CRUD productos (sin auth)
-│   └── AuthPage.jsx           # ❌ Solo maquetación
+│   ├── HomePage.jsx             # ✅ Catálogo con filtros
+│   ├── ProductDetailPage.jsx     # ✅ Slider + info vendedor
+│   ├── AddProductPage.jsx        # ✅ CRUD con auth
+│   ├── AuthPage.jsx             # ✅ Login/Register funcional
+│   └── WishlistPage.jsx         # ✅ Nueva página de favoritos
 ├── components/
-│   ├── TopBar.jsx             # Navbar con búsqueda
-│   ├── ProductCard.jsx        # Tarjeta simple
-│   ├── ProductGrid.jsx        # Grid de productos
-│   ├── CategoryFilter.jsx     # Filtro por categoría
-│   └── SearchInput.jsx        # Input de búsqueda
+│   ├── TopBar.jsx               # ✅ Muestra estado de sesión
+│   ├── ProductCard.jsx          # ✅ Botón wishlist
+│   ├── ImageSlider.jsx          # ✅ Slider con swipe
+│   ├── ProductGrid.jsx          # ✅ Grid de productos
+│   ├── CategoryFilter.jsx       # ✅ Filtro por categoría
+│   └── SearchInput.jsx          # ✅ Input de búsqueda
 ├── services/
-│   └── productosApi.js        # ✅ Cliente HTTP completo
-├── styles/
-│   └── *.css                  # Estilos separados por página
-└── utils/
-    └── products.js           # Constantes y filter logic
+│   ├── productosApi.js          # ✅ Actualizado para ObjectId
+│   ├── authApi.js               # ✅ Nuevo - cliente auth
+│   └── wishlistApi.js           # ✅ Nuevo - cliente wishlist
+└── styles/
+    ├── *.css                    # Estilos existentes
+    └── wishlist.css             # ✅ Nuevo
 ```
 
 ### Estado de componentes
@@ -40,18 +54,13 @@ frontend/src/
 | Componente | Estado | Notas |
 |------------|--------|-------|
 | HomePage | ✅ Funcional | Carga desde API, filtros en memoria |
-| ProductDetailPage | ⚠️ Parcial | Solo una imagen, falta slider |
-| AddProductPage | ✅ Funcional | CRUD completo, sin restricción de auth |
-| AuthPage | ❌ Maquetación | UI lista, sin lógica de autenticación |
-| TopBar | ⚠️ Parcial | No muestra estado de sesión |
-
-### Servicios API actuales
-
-**productosApi.js** exporta:
-- `fetchProductos()` - GET /api/productos
-- `fetchProductoById(id)` - GET /api/productos/:id
-- `createProducto(payload)` - POST /api/productos
-- `deleteProducto(id)` - DELETE /api/productos/:id
+| ProductDetailPage | ✅ Funcional | Slider de imágenes, info vendedor |
+| AddProductPage | ✅ Funcional | Auth requerido, múltiples imágenes |
+| AuthPage | ✅ Funcional | Validación @unac.edu.co, JWT |
+| TopBar | ✅ Funcional | Muestra usuario/logout cuando auth |
+| WishlistPage | ✅ Nuevo | Lista de favoritos del usuario |
+| ProductCard | ✅ Funcional | Botón wishlist con estado visual |
+| ImageSlider | ✅ Nuevo | Navegación + swipe táctil |
 
 ---
 
@@ -60,105 +69,120 @@ frontend/src/
 ### Estructura de archivos
 ```
 backend/
-├── .env                       # ⚠️ REQUERIDO (MONGODB_URI)
+├── .env                         # MONGODB_URI, JWT_SECRET
 ├── server/
-│   ├── index.js               # API REST completa
-│   └── models/
-│       └── Producto.js        # Esquema Mongoose
-└── (node_modules/)
+│   ├── index.js                 # Rutas API completas
+│   ├── models/
+│   │   ├── Producto.js          # ✅ ObjectId, imagenes[], vendedor
+│   │   └── Usuario.js           # ✅ Nuevo - auth + wishlist
+│   ├── routes/
+│   │   └── auth.js             # ✅ Nuevo - register, login, me
+│   └── middleware/
+│       └── auth.js             # ✅ Nuevo - verificación JWT
 ```
 
-### Modelo Producto actual
-```javascript
-{
-  id: Number,        // id de negocio (único)
-  nombre: String,
-  precio: Number,
-  descripcion: String,
-  imagen: String,     // URL única - ⚠️ debería ser array
-  categoria: String
-}
-```
+### Rutas API implementadas
 
-### Rutas API actuales
-| Método | Ruta | Descripción | Estado |
-|--------|------|-------------|--------|
-| GET | / | Info de salud | ✅ |
-| GET | /api/productos | Listar todos | ✅ |
-| GET | /api/productos/:id | Detalle | ✅ |
-| POST | /api/productos | Crear | ✅ |
-| DELETE | /api/productos/:id | Eliminar | ✅ |
+| Método | Ruta | Descripción | Auth |
+|--------|------|-------------|------|
+| GET | / | Info de salud | ❌ |
+| POST | /api/auth/register | Registrar usuario | ❌ |
+| POST | /api/auth/login | Iniciar sesión | ❌ |
+| GET | /api/auth/me | Usuario actual | ✅ |
+| POST | /api/auth/logout | Cerrar sesión | ✅ |
+| GET | /api/productos | Listar productos | ❌ |
+| GET | /api/productos/:id | Detalle producto | ❌ |
+| POST | /api/productos | Crear producto | ✅ |
+| DELETE | /api/productos/:id | Eliminar producto | ✅ |
+| GET | /api/wishlist | Wishlist usuario | ✅ |
+| POST | /api/wishlist/:productoId | Agregar a wishlist | ✅ |
+| DELETE | /api/wishlist/:productoId | Quitar de wishlist | ✅ |
+| GET | /api/wishlist/check/:productoId | Verificar estado | ✅ |
 
-### Dependencias detectadas
+### Dependencias instaladas
 - `express` - Framework web
 - `mongoose` - ODM MongoDB
 - `cors` - Cross-origin
 - `dotenv` - Variables de entorno
+- `bcryptjs` - Hash de contraseñas
+- `jsonwebtoken` - Tokens JWT
 
 ---
 
-## Funcionalidades PMV - Análisis de Gap
+## Modelo de Datos Final
 
-| Requisito PMV | Implementado | Gap Analysis |
-|---------------|-------------|--------------|
-| Manejo de Sesión | ❌ | No existe AuthContext, no hay JWT |
-| Registrar usuario | ❌ | AuthPage es solo UI, no hay endpoint |
-| Catálogo de productos | ✅ | Completo |
-| Vender un producto | ⚠️ | Crea productos, pero sin usuario asociado |
-| Contactar vendedor | ❌ | No hay modelo Usuario con datos de contacto |
-| Agregar deseados | ❌ | No existe wishlist |
-| Filtrar productos | ✅ | Filtro por categoría y búsqueda |
-
----
-
-## Dependencias faltantes para implementar Auth
-
-### Backend
-```bash
-npm install bcryptjs jsonwebtoken
+### Usuario
+```javascript
+{
+  _id: ObjectId,
+  nombre: String,           // required
+  correo: String,          // unique, lowercase
+  passwordHash: String,    // bcrypt
+  telefono: String,        // opcional
+  wishlist: [ObjectId]     // refs a Producto
+}
 ```
 
-### Frontend
-```bash
-# Ya tiene react-router-dom
-# Solo necesita Context API (built-in)
+### Producto
+```javascript
+{
+  _id: ObjectId,
+  nombre: String,
+  precio: Number,
+  descripcion: String,
+  imagenes: [String],      // Array de URLs
+  categoria: String,
+  vendedor: ObjectId,      // ref a Usuario
+  estado: String,          // 'disponible' | 'vendido'
+  createdAt: Date
+}
 ```
 
 ---
 
-## Patrones detectados en el código
+## Checklist PMV - Estado Final
 
-1. **Fetch con cleanup:** Los useEffect usan variable `cancelado` para evitar setState en componentes desmontados. ✅ Good pattern.
-
-2. **API responses:** El backend omite `_id` de MongoDB en respuestas JSON. ✅ Consistente.
-
-3. **IDs de negocio:** Usa `id` numérico secuencial en lugar de `ObjectId` de Mongo. ⚠️ Decisión de diseño a reconsiderar para usuarios.
-
-4. **Rutas relativas:** El frontend usa `/api/...` para que Vite proxifique. ✅ Correcto para dev.
-
-5. **Separación de estilos:** Cada página tiene su propio CSS. ✅ Mantenible.
-
----
-
-## Recomendaciones inmediatas
-
-1. **Prioridad 1:** Implementar autenticación (Auth) - bloqueante para otras features
-2. **Prioridad 2:** Asociar productos a usuarios (vendedorId)
-3. **Prioridad 3:** Modelo Usuario con datos de contacto
-4. **Prioridad 4:** Wishlist embebido en Usuario o colección separada
+| Requisito | Estado |
+|-----------|--------|
+| Manejo de Sesión | ✅ Completado |
+| Registrar usuario | ✅ Completado |
+| Catálogo de productos | ✅ Completado |
+| Vender un producto | ✅ Completado |
+| Contactar vendedor | ✅ Completado |
+| Agregar productos deseados | ✅ Completado |
+| Filtrar productos | ✅ Completado |
+| Slider de imágenes | ✅ Completado |
 
 ---
 
-## Archivos a modificar/crear para Auth
+## Archivos modificados/creados
 
 ### Backend (nuevos)
-- `backend/server/models/Usuario.js`
-- `backend/server/routes/auth.js` (o añadir a index.js)
-- `backend/server/middleware/auth.js` (verificación JWT)
+- `backend/server/models/Usuario.js` ✨ NUEVO
+- `backend/server/routes/auth.js` ✨ NUEVO
+- `backend/server/middleware/auth.js` ✨ NUEVO
+- `backend/server/index.js` ✏️ ACTUALIZADO
 
-### Frontend (nuevos/modificados)
-- `frontend/src/contexts/AuthContext.jsx` (nuevo)
-- `frontend/src/services/authApi.js` (nuevo)
-- `frontend/src/pages/AuthPage.jsx` (modificar)
-- `frontend/src/components/TopBar.jsx` (modificar)
-- `frontend/src/App.jsx` (proteger rutas)
+### Frontend (nuevos)
+- `frontend/src/contexts/AuthContext.jsx` ✨ NUEVO
+- `frontend/src/services/authApi.js` ✨ NUEVO
+- `frontend/src/services/wishlistApi.js` ✨ NUEVO
+- `frontend/src/pages/WishlistPage.jsx` ✨ NUEVO
+- `frontend/src/components/ImageSlider.jsx` ✨ NUEVO
+- `frontend/src/styles/wishlist.css` ✨ NUEVO
+
+### Frontend (actualizados)
+- `frontend/src/App.jsx` ✏️ ACTUALIZADO
+- `frontend/src/main.jsx` ✏️ ACTUALIZADO
+- `frontend/src/pages/AuthPage.jsx` ✏️ ACTUALIZADO
+- `frontend/src/pages/ProductDetailPage.jsx` ✏️ ACTUALIZADO
+- `frontend/src/pages/AddProductPage.jsx` ✏️ ACTUALIZADO
+- `frontend/src/components/TopBar.jsx` ✏️ ACTUALIZADO
+- `frontend/src/components/ProductCard.jsx` ✏️ ACTUALIZADO
+- `frontend/src/services/productosApi.js` ✏️ ACTUALIZADO
+- `frontend/src/styles/navbar.css` ✏️ ACTUALIZADO
+- `frontend/src/styles/home.css` ✏️ ACTUALIZADO
+- `frontend/src/styles/product.css` ✏️ ACTUALIZADO
+
+### Documentación
+- `.planning/ROADMAP.md` ✏️ ACTUALIZADO

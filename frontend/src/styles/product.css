@@ -253,3 +253,141 @@ footer{
 .btn-comprar:hover {
     background-color: #78C989;
 }
+
+/* ============================================
+   IMAGE SLIDER STYLES
+   ============================================ */
+
+.image-slider-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #E0EFFE;
+}
+
+.image-slider-container.single {
+  overflow: visible;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slider-image {
+  min-width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1E3A5F;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-btn-left {
+  left: 12px;
+}
+
+.slider-btn-right {
+  right: 12px;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.slider-dot.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+.slider-dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.slider-counter {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  z-index: 10;
+}
+
+/* Vendedor info styles */
+.vendedor-info {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 8px;
+}
+
+.vendedor-info h4 {
+  font-size: 14px;
+  color: #64748B;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.vendedor-info .vendedor-dato {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  font-size: 14px;
+  color: #1E3A5F;
+}
+
+.vendedor-info .vendedor-dato span {
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .slider-image {
+    height: 280px;
+  }
+
+  .slider-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}

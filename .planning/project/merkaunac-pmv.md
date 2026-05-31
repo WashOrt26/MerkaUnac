@@ -16,12 +16,12 @@ Sistema de promoción de productos locales para conectar a la comunidad universi
 ## Funcionalidades PMV
 | Funcionalidad | Estado |
 |---------------|--------|
-| Manejo de Sesión | Pendiente |
-| Registrar usuario | Pendiente |
+| Manejo de Sesión | ✅ Implementado |
+| Registrar usuario | ✅ Implementado |
 | Catálogo de productos | ✅ Implementado |
-| Vender un producto | Parcial |
-| Contactar vendedor | Pendiente |
-| Agregar productos deseados | Pendiente |
+| Vender un producto | ✅ Implementado |
+| Contactar vendedor | ✅ Implementado |
+| Agregar productos deseados | COn bugs |
 | Filtrar productos | ✅ Implementado |
 
 ## Próxima fase
