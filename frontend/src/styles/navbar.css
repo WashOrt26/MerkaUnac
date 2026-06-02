@@ -1,144 +1,301 @@
-/* Estilos base de la barra superior reutilizada en varias páginas. */
-* {
+/* ==========================================================================
+   MerkaUnac — Estilos base + TopBar (navbar)
+   --------------------------------------------------------------------------
+   Este archivo define el sistema de diseño base (variables CSS) y la
+   barra superior reutilizada por HomePage, ProductDetailPage, AddProductPage
+   y WishlistPage.
+   ========================================================================== */
+
+:root {
+  /* Paleta principal (azules UNAC) */
+  --color-primary:        #1E40AF;
+  --color-primary-600:    #2563EB;
+  --color-primary-500:    #3B82F6;
+  --color-primary-300:    #60A5FA;
+  --color-primary-200:    #93C5FD;
+  --color-primary-100:    #BFDBFE;
+  --color-primary-50:     #DBEAFE;
+  --color-primary-25:     #EFF6FF;
+
+  /* Acentos */
+  --color-accent-green:   #10B981;
+  --color-accent-green-soft: #D1FAE5;
+  --color-accent-pink:    #EC4899;
+  --color-accent-pink-soft: #FCE7F3;
+  --color-accent-amber:   #F59E0B;
+
+  /* Texto */
+  --color-text:           #0F172A;
+  --color-text-muted:     #475569;
+  --color-text-soft:      #64748B;
+  --color-text-invert:    #FFFFFF;
+
+  /* Superficies */
+  --color-bg:             #F1F5FB;
+  --color-bg-soft:        #F8FAFC;
+  --color-surface:        #FFFFFF;
+  --color-border:         #E2E8F0;
+  --color-border-soft:    #EEF2F7;
+
+  /* Estado */
+  --color-danger:         #DC2626;
+  --color-danger-soft:    #FEE2E2;
+  --color-danger-border:  #FCA5A5;
+
+  /* Tipografía */
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Radios */
+  --radius-sm: 6px;
+  --radius:    10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow:    0 4px 12px rgba(30, 64, 175, 0.08);
+  --shadow-md: 0 8px 24px rgba(30, 64, 175, 0.10);
+  --shadow-lg: 0 20px 40px rgba(30, 64, 175, 0.14);
+
+  /* Transiciones */
+  --t-fast: 120ms ease;
+  --t:      180ms ease;
+}
+
+/* ---------- Reset base ---------- */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-body {
-  background: #F0F7FF;
-  padding-top: 58px;
+html, body {
+  height: 100%;
 }
 
+body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+  padding-top: 64px;            /* hueco para la TopBar fija */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { display: block; max-width: 100%; }
+
+a { color: var(--color-primary-600); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button { font-family: inherit; }
+
+/* ---------- TopBar (navbar) ---------- */
 .top-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  height: 58px;
-  background: #BFDBFE;
-  border-bottom: 2px solid #93C5FD;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   padding: 0 24px;
+  box-shadow: var(--shadow-sm);
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 18px;
   font-weight: 800;
-  color: #1E3A5F;
+  color: var(--color-primary);
   background: none;
   border: none;
   cursor: pointer;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.2px;
   white-space: nowrap;
+  padding: 6px 8px;
+  border-radius: var(--radius);
+  transition: background var(--t-fast);
 }
 
+.logo:hover {
+  background: var(--color-primary-25);
+}
+
+.logo::before {
+  content: "";
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary));
+  border-radius: 8px;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(30, 64, 175, 0.25);
+}
+
+/* Inputs de búsqueda dentro de la TopBar (selector genérico para input
+   con `type="search"` y, por retro-compat, `type="text"`) */
+.top-bar input[type="search"],
 .top-bar input[type="text"] {
   flex: 1;
-  height: 35px;
-  padding: 0 14px;
-  background: #ffffff;
-  border: 1.5px solid #93C5FD;
-  border-radius: 8px;
-  color: #1E3A5F;
-  font-size: 13px;
-  outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-.top-bar input[type="text"]:focus {
-  border-color: #60A5FA;
-  box-shadow: 0 0 0 3px rgba(147,197,253,0.35);
-}
-
-.top-bar input[type="text"]::placeholder { color: #93C5FD; }
-
-.auth-button {
-  height: 35px;
+  height: 40px;
   padding: 0 16px;
-  border-radius: 8px;
-  font-size: 13px;
+  background: var(--color-bg-soft);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--t), box-shadow var(--t), background var(--t);
+}
+
+.top-bar input[type="search"]:focus,
+.top-bar input[type="text"]:focus {
+  border-color: var(--color-primary-300);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.20);
+}
+
+.top-bar input[type="search"]::placeholder,
+.top-bar input[type="text"]::placeholder {
+  color: var(--color-text-soft);
+}
+
+/* Botones de acción (login, agregar, wishlist) */
+.auth-button {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--radius);
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
-  border: 1.5px solid #93C5FD;
-  background: #ffffff;
-  color: #1E3A5F;
-  transition: all 0.15s;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--t);
 }
 
 .auth-button:hover {
-  border-color: #60A5FA;
-  background: #EFF6FF;
+  border-color: var(--color-primary-300);
+  background: var(--color-primary-25);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
 }
 
+.auth-button:active {
+  transform: translateY(0);
+}
+
+/* Variante verde: botón "Agregar Producto" */
 .auth-button[style*="#28a745"] {
-  background: #86EFAC !important;
-  border-color: #86EFAC !important;
-  color: #14532D !important;
+  background: var(--color-accent-green) !important;
+  border-color: var(--color-accent-green) !important;
+  color: #ffffff !important;
   font-weight: 700 !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
 }
 
 .auth-button[style*="#28a745"]:hover {
-  background: #6EE7B7 !important;
-  border-color: #6EE7B7 !important;
+  background: #0EA371 !important;
+  border-color: #0EA371 !important;
+  transform: translateY(-1px);
 }
 
-/* Botón de wishlist */
+/* Variante gris: cuando no está autenticado */
+.auth-button[style*="#6c757d"] {
+  background: var(--color-bg-soft) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-soft) !important;
+}
+
+/* Variante rosa: botón de wishlist */
 .auth-button[style*="#e83e8c"] {
-  background: #FCE7F3 !important;
-  border-color: #FBCFE8 !important;
-  color: #831843 !important;
+  background: var(--color-accent-pink-soft) !important;
+  border-color: #F9A8D4 !important;
+  color: #9D174D !important;
   font-weight: 700 !important;
 }
 
 .auth-button[style*="#e83e8c"]:hover {
-  background: #F9A8D4 !important;
-  border-color: #F9A8D4 !important;
+  background: #FBCFE8 !important;
+  border-color: var(--color-accent-pink) !important;
+  color: #831843 !important;
 }
 
 /* Info de usuario autenticado */
 .user-info {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  padding-left: 6px;
+  border-left: 1px solid var(--color-border);
 }
 
 .user-name {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  color: #1E3A5F;
+  color: var(--color-text);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .logout-btn {
-  height: 30px;
-  padding: 0 12px;
-  border-radius: 6px;
-  font-size: 12px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius);
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  border: 1.5px solid #93C5FD;
-  background: #ffffff;
-  color: #1E3A5F;
-  transition: all 0.15s;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  transition: all var(--t);
 }
 
 .logout-btn:hover {
-  background: #FEE2E2;
-  border-color: #FCA5A5;
-  color: #991B1B;
+  background: var(--color-danger-soft);
+  border-color: var(--color-danger-border);
+  color: var(--color-danger);
 }
 
-/* Mensaje de error en auth */
+/* Mensaje de error en auth (viene de auth.css pero compartido por
+   ProtectedRoute en App.jsx) */
 .auth-error {
-  color: #DC2626;
+  color: var(--color-danger);
   font-size: 13px;
   text-align: center;
   margin: 8px 0;
-  padding: 8px;
-  background: #FEE2E2;
-  border-radius: 6px;
-  border: 1px solid #FCA5A5;
+  padding: 10px 12px;
+  background: var(--color-danger-soft);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-danger-border);
+}
+
+/* Responsive TopBar */
+@media (max-width: 720px) {
+  .top-bar {
+    padding: 0 14px;
+    gap: 8px;
+  }
+  .logo { font-size: 15px; }
+  .auth-button { padding: 0 12px; font-size: 13px; height: 36px; }
+  .user-name { display: none; }
+  .user-info { padding-left: 0; border-left: none; }
 }

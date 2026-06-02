@@ -1,161 +1,271 @@
-/* Estilos de la pantalla para crear y administrar productos locales. */
+/* ==========================================================================
+   MerkaUnac — AddProductPage
+   --------------------------------------------------------------------------
+   Formulario para crear productos y panel de productos del usuario.
+   ========================================================================== */
+
 .add-product-page {
-    font-family: Arial, sans-serif;
-    background-color: #F0F7FF;
-    padding: 20px;
-    padding-top: 80px;
+  background:
+    radial-gradient(900px 400px at 90% -10%, rgba(96, 165, 250, 0.16), transparent 60%),
+    var(--color-bg);
+  min-height: 100vh;
+  padding: 16px 16px 48px;
 }
 
+/* ---------- Tarjeta de formulario ---------- */
 .container-form {
-    max-width: 600px;
-    margin: 20px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.06);
+  max-width: 640px;
+  margin: 16px auto;
+  background: var(--color-surface);
+  padding: 32px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
 }
 
 .container-form h1 {
-    text-align: center;
-    color: #1E3A5F;
-    margin-bottom: 30px;
+  text-align: center;
+  color: var(--color-text);
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
 }
 
+.container-form h1::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-300));
+  margin: 10px auto 0;
+  border-radius: var(--radius-pill);
+}
+
+.container-form h2 {
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+/* ---------- Grupos de campos ---------- */
 .form-group {
-    margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #1E3A5F;
-    font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 13.5px;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #BFDBFE;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  background: var(--color-bg-soft);
+  color: var(--color-text);
+  transition: border-color var(--t), box-shadow var(--t), background var(--t);
+  font-family: inherit;
 }
 
 .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-    outline: none;
-    border-color: #2563EB;
-    box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+  outline: none;
+  border-color: var(--color-primary-300);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.18);
 }
 
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--color-text-soft);
+}
+
+.form-group small {
+  display: block;
+  margin-top: 6px;
+  color: var(--color-text-soft);
+  font-size: 12px;
+}
+
+/* ---------- Botones ---------- */
 .btn-group {
-    display: flex;
-    gap: 10px;
-    margin-top: 30px;
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
 }
 
 .btn {
-    flex: 1;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
+  flex: 1;
+  min-width: 140px;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: all var(--t);
 }
 
 .btn-submit {
-    background-color: #93C5FD;
-    color: #1E3A5F;
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
 }
 
 .btn-submit:hover {
-    background-color: #60A5FA;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35);
+  filter: brightness(1.05);
 }
 
+.btn-submit:active { transform: translateY(0); }
+
 .btn-cancel {
-    background-color: #DBEAFE;
-    color: #4B7FA3;
+  background: var(--color-bg-soft);
+  color: var(--color-text-muted);
+  border: 1.5px solid var(--color-border);
+  box-shadow: none;
 }
 
 .btn-cancel:hover {
-    background-color: #BFDBFE;
+  background: var(--color-primary-25);
+  border-color: var(--color-primary-200);
+  color: var(--color-primary);
 }
 
+/* ---------- Mensajes ---------- */
 .mensaje {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 4px;
-    text-align: center;
-    display: none;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid;
 }
 
 .mensaje.exito {
-    background-color: #DBEAFE;
-    color: #1E3A5F;
-    border: 1px solid #BFDBFE;
+  background: var(--color-accent-green-soft);
+  color: #065F46;
+  border-color: #6EE7B7;
 }
 
 .mensaje.error {
-    background-color: #FEE2E2;
-    color: #7F1D1D;
-    border: 1px solid #FECACA;
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+  border-color: var(--color-danger-border);
 }
 
+/* ---------- Lista de productos del usuario ---------- */
 .lista-productos {
-    margin-top: 40px;
+  margin-top: 24px;
 }
 
 .lista-productos h2 {
-    color: #1E3A5F;
-    border-bottom: 2px solid #93C5FD;
-    padding-bottom: 10px;
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.lista-productos-bd {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .producto-item {
-    background: #F0F7FF;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  transition: all var(--t);
+}
+
+.producto-item:hover {
+  border-color: var(--color-primary-200);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .producto-info {
-    flex: 1;
+  flex: 1;
+  min-width: 0;
 }
 
 .producto-info h4 {
-    margin: 0;
-    color: #1E3A5F;
+  margin: 0 0 4px;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .producto-info p {
-    margin: 5px 0;
-    color: #4B7FA3;
-    font-size: 14px;
+  margin: 2px 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.producto-info p strong {
+  color: var(--color-text);
+  font-weight: 600;
+  margin-right: 4px;
 }
 
 .btn-eliminar {
-    background-color: #BFDBFE;
-    color: #1E3A5F;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+  border: 1.5px solid var(--color-danger-border);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all var(--t);
+  white-space: nowrap;
 }
 
 .btn-eliminar:hover {
-    background-color: #93C5FD;
+  background: var(--color-danger);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container-form { padding: 22px 18px; }
+  .producto-item { flex-direction: column; align-items: stretch; }
+  .btn-eliminar { width: 100%; }
+  .btn-group { flex-direction: column; }
+  .btn { width: 100%; }
 }
