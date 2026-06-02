@@ -41,6 +41,9 @@ import { authMiddleware } from './middleware/auth.js'; // Verifica tokens JWT
 // Obtenemos la ruta del directorio actual (requerido en ESM)
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Ruta absoluta al archivo .env que vive junto al backend
+const envPath = path.resolve(__dirname, '../.env');
+
 // Leemos las variables de entorno desde el archivo .env
 // Esto nos permite tener configuración separada del código
 dotenv.config({ path: envPath });
