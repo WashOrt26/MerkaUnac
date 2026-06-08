@@ -535,6 +535,20 @@ await mongoose.connect(MONGODB_URI, { dbName: MONGODB_DB_NAME });
 console.log('✅ Conectado a MongoDB Atlas');
 console.log(`   Base de datos: ${mongoose.connection.db.databaseName}`);
 
+// Elimina un índice legado en la colección productos que puede causar
+// errores E11000 cuando el campo `id` no existe o es null.
+try {
+  const productosCollection = mongoose.connection.db.collection('productos');
+  const indexes = await productosCollection.indexes();
+  const idIndex = indexes.find(index => index.name === 'id_1');
+  if (idIndex) {
+    await productosCollection.dropIndex('id_1');
+    console.log('🧹 Índice legado id_1 eliminado de productos');
+  }
+} catch (cleanupError) {
+  console.warn('⚠️ No se pudo limpiar índice id_1 de productos:', cleanupError.message);
+}
+
 app.listen(PORT, () => {
   console.log(`\n🚀 API corriendo en http://localhost:${PORT}`);
   console.log(`   Frontend: http://localhost:5173 (o el puerto de Vite)`);

@@ -93,7 +93,8 @@ const productoSchema = new mongoose.Schema(
   },
   {
     versionKey: false,    // No crear campo __v
-    collection: 'productos' // Colección 'productos' en MongoDB
+    collection: 'productos', // Colección 'productos' en MongoDB
+    timestamps: true       // Crea createdAt y updatedAt automáticamente
   }
 );
 
